@@ -1,0 +1,25 @@
+import unittest
+from jelszoerosseg import jelszo_erosseg
+
+class TestJelszoErosseg(unittest.TestCase):
+    def test_basic(self):
+        self.assertEqual(jelszo_erosseg("alma"), 1)
+
+    def test_length_5(self):
+        self.assertEqual(jelszo_erosseg("almafa"), 2) # 1 alap + 1 hossz
+
+    def test_length_8(self):
+        self.assertEqual(jelszo_erosseg("almafa12"), 4) # 1 alap + 1 (>=5) + 2 (>=8)
+
+    def test_special_chars(self):
+        self.assertEqual(jelszo_erosseg("a_b-c."), 7) # 1 alap + 1 (>=5) + 3*2 spec
+
+    def test_banned_words(self):
+        self.assertEqual(jelszo_erosseg("titkosjelszo"), 0)
+        self.assertEqual(jelszo_erosseg("alma123"), 0)
+
+    def test_empty(self):
+        self.assertEqual(jelszo_erosseg(""), 0)
+
+if __name__ == '__main__':
+    unittest.main()
