@@ -16,7 +16,7 @@ def jelszo_erosseg(jelszo: str) -> int:
     if len(jelszo) >= 8:
         score += 2
         
-    spec_count = sum(1 for c in jelszo if not c.isalnum())
+    spec_count = sum(1 for c in jelszo if c in ['_', '-', '.'])
     score += spec_count * 2
     
     return score
