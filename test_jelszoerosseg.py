@@ -6,13 +6,13 @@ class TestJelszoErosseg(unittest.TestCase):
         self.assertEqual(jelszo_erosseg("alma"), 1)
 
     def test_length_5(self):
-        self.assertEqual(jelszo_erosseg("almafa"), 2) # 1 alap + 1 hossz
+        self.assertEqual(jelszo_erosseg("almafa"), 2)
 
     def test_length_8(self):
-        self.assertEqual(jelszo_erosseg("almafa12"), 4) # 1 alap + 1 (>=5) + 2 (>=8)
+        self.assertEqual(jelszo_erosseg("almafa12"), 4)
 
     def test_special_chars(self):
-        self.assertEqual(jelszo_erosseg("a_b-c."), 7) # 1 alap + 1 (>=5) + 3*2 spec
+        self.assertEqual(jelszo_erosseg("a_b-c."), 8)
 
     def test_banned_words(self):
         self.assertEqual(jelszo_erosseg("titkosjelszo"), 0)
