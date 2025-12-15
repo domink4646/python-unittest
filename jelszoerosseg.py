@@ -1,49 +1,25 @@
 def jelszo_erosseg(jelszo: str) -> int:
     if not isinstance(jelszo, str):
         raise TypeError("jelszo must be a str")
-    if len(jelszo) == 0:
+    
+    banned = ["titok", "jelszo", "123"]
+    if any(word in jelszo.lower() for word in banned):
         return 0
     
-    low = jelszo.lower()
-    if "jelszo" in low or "123" in low:
-        return 0
-
-    strength = 1
-    if len(jelszo) >= 5:
-        strength += 1
-    if len(jelszo) >= 8:
-        strength += 2
-
-    special_count = sum(1 for ch in jelszo if ch in ("_", "-", "."))
-    strength += 2 * special_count
-
-    return strength
-
-
-if __name__ == "__main__":
-    print(jelszo_erosseg("hazi_macska_4_life"))         
-
-def jelszo_erosseg(jelszo: str) -> int:
-    if not isinstance(jelszo, str):
-        raise TypeError("jelszo must be a str")
     if len(jelszo) == 0:
         return 0
+        
+    score = 1
     
-    low = jelszo.lower()
-    if "jelszo" in low or "123" in low:
-        return 0
-
-    strength = 1
     if len(jelszo) >= 5:
-        strength += 1
+        score += 1
     if len(jelszo) >= 8:
-        strength += 2
-
-    special_count = sum(1 for ch in jelszo if ch in ("_", "-", "."))
-    strength += 2 * special_count
-
-    return strength
-
+        score += 2
+        
+    spec_count = sum(1 for c in jelszo if not c.isalnum())
+    score += spec_count * 2
+    
+    return score
 
 if __name__ == "__main__":
     print(jelszo_erosseg("hazi_macska_4_life"))           
